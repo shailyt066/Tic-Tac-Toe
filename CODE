@@ -1,0 +1,59 @@
+def sum(a,b,c):
+    return a+b+c
+
+def board(X,Z):
+    a='X' if X[0] else ('O' if Z[0] else 0)
+    b='X' if X[1] else ('O' if Z[1] else 1)
+    c='X' if X[2] else ('O' if Z[2] else 2)
+    d='X' if X[3] else ('O' if Z[3] else 3)
+    e='X' if X[4] else ('O' if Z[4] else 4)
+    f='X' if X[5] else ('O' if Z[5] else 5)
+    g='X' if X[6] else ('O' if Z[6] else 6)
+    h='X' if X[7] else ('O' if Z[7] else 7)
+    i='X' if X[8] else ('O' if Z[8] else 8)
+    print(f"__________")
+    print(f"{a} | {b} | {c} ")
+    print(f"__|___|___")
+    print(f"{d} | {e} | {f} ")
+    print(f"__|___|___")
+    print(f"{g} | {h} | {i} ")
+    print(f"__|___|___")
+ #ternary operator   {X[0]?'X':(Z[0]?'0':0)}
+# {"X" if X[0] else ("0" if Z[0])}
+def winner(X,Z):
+    wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+    for win in wins:
+        if(sum(X[win[0]],X[win[1]],X[win[2]])==3):
+            print("X won")
+            board(X,Z)
+            return 1
+            
+        if(sum(Z[win[0]],Z[win[1]],Z[win[2]])==3): 
+            print("O won")
+            return 0
+            board(X,Z)
+    return -1        
+if __name__=="__main__":
+    X=[0,0,0,0,0,0,0,0,0]
+    Z=[0,0,0,0,0,0,0,0,0]
+    turn=1 #for x
+    print("Lets Play Tic Tac Toe")
+    while(True):
+      board(X,Z)    
+      if(turn==1):        
+        print("X's chance")
+        value = int(input("enter position value- "))
+        X[value]=1
+      else:
+        print("O's chance")
+        value = int(input("enter position value- "))  
+        Z[value]=1 
+      winn=winner(X,Z)
+      if(winn != -1):
+      
+          break
+      
+      turn=not(turn)    
+      
+  #    break
+    
